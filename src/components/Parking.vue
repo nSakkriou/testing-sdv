@@ -5,8 +5,8 @@
      <button class="btn-primary" @click="handleOpenModal">
        Voir les horaires
      </button>
-     <button class="btn-secondary">
-       Voir les stations
+     <button class="btn-secondary" @click="goToStations">
+        Voir les stations
      </button>
    </div>
  </div>
@@ -15,15 +15,22 @@
 
 <script setup lang="ts">
 import {Parking} from "../models/Parking.ts";
+import { useRouter } from "vue-router";
 
 const props = defineProps<{
   parking: Parking;
 }>();
 
+const router = useRouter()
+
 const emit = defineEmits(["open-modal"]);
 
 function handleOpenModal() {
   emit("open-modal", props.parking.openingCalendar);
+}
+
+function goToStations() {
+  router.push({ path: "/stations", query: { parkingId: props.parking.id + "" }})
 }
 
 </script>

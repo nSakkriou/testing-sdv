@@ -23,6 +23,7 @@ import {useParkingService} from "../composables/parking.service.ts";
 import Parking from "./Parking.vue"
 import {OpeningCalendar} from "../models/OpeningCalendar.ts";
 import Modal from "./partials/modal.vue";
+import { useGeoService } from "../composables/geoloc.service.ts";
 
 const parkingList: Ref<Array<ParkingModel>> = ref([]);
 
@@ -30,8 +31,12 @@ const modal = ref();
 
 const currentHours: Ref<OpeningCalendar | undefined> = ref<OpeningCalendar>();
 
-useParkingService().get().then((data: ParkingModel[]) => {
-  parkingList.value = data;
+useGeoService().getCoord().then(res => {
+    let coord = res
+
+    useParkingService().get(coord).then((data: ParkingModel[]) => {
+      parkingList.value = data;
+    })
 });
 
 function handleOpenParkingModal(calendar: OpeningCalendar) {

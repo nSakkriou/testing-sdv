@@ -1,8 +1,6 @@
 <template>
-  <ParkingList />
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts">
-
-import ParkingList from "./components/ParkingList.vue";
 </script>
