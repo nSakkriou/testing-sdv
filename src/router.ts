@@ -13,3 +13,7 @@ const router = createRouter({
 })
 
 export default router
+
+export const goToHome = () => {
+    router.push({ path: "/"})
+}
