@@ -39,3 +39,33 @@ button.btn-danger {
 button.btn-secondary {
   background: #dbff7f;
 }
+
+.drawer {
+  border: 2px solid black;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.drawer .d-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn-drawer {
+  border: none;
+  border-bottom: 2px solid black;
+  box-shadow: none;
+  transition: none;
+  padding: 8px 2rem;
+  font-size: 18px;
+}
+
+.btn-drawer:hover {
+  transform: none;
+}
+
+.btn-drawer.selected {
+  border: 2px solid black;
+}

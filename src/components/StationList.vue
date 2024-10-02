@@ -1,17 +1,29 @@
 <template>
     <nav>
-        <button @click="goToHome">Retour</button>
-        <button @click="() => showMetro = true">Métro</button>
-        <button @click="() => showMetro = false">Bus</button>
+      <h1>{{ parking?.name }}</h1>
+      <button class="btn-danger" @click="goToHome">Retour</button>
     </nav>
-    
-    <div id="metro" v-if="showMetro">
-        <Station v-for="station in parking?.metroStations" :station="station"></Station>
-    </div>
 
-    <div id="bus" v-if="!showMetro">
+    <div class="drawer">
+      <div class="d-header">
+        <button class="btn-drawer" :class="{
+          'selected': showMetro
+        }" @click="() => showMetro = true">Métro</button>
+        <button class="btn-drawer" :class="{
+          'selected': !showMetro
+        }" @click="() => showMetro = false">Bus</button>
+      </div>
+
+      <div id="metro" v-if="showMetro">
+        <Station v-for="station in parking?.metroStations" :station="station"></Station>
+      </div>
+
+      <div id="bus" v-if="!showMetro">
         <Station v-for="station in parking?.busStations" :station="station"></Station>
+      </div>
     </div>
+    
+
 </template>
 
 <script setup lang="ts">
@@ -34,3 +46,12 @@ useParkingService().getById(parkingId + "").then(res => {
 const showMetro : Ref<Boolean> = ref<boolean>(true)
 
 </script>
+<style scoped>
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+</style>
