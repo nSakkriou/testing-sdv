@@ -7,5 +7,35 @@
   font-variation-settings: "slnt" 0;
 }
 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre {
+  padding: 0;
+  margin: 0;
+}
+
 /* Components */
 
+button {
+  cursor: pointer;
+  background: white;
+  border: 2px solid black;
+  padding: 6px 12px;
+  box-shadow: 2px 2px 0px black;
+  transition: 0.2s ease-in;
+}
+
+button:hover {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: 0px 0px 0px black;
+}
+
+button.btn-primary {
+  background: #75ccff;
+}
+
+button.btn-danger {
+  background: #ff6060;
+}
+
+button.btn-secondary {
+  background: #dbff7f;
+}

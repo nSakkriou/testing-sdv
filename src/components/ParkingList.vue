@@ -1,18 +1,43 @@
 <template>
-
+  <div>
+    <Parking ref="parkingRefs" v-for="parking of parkingList" :key="parking.id" :parking="parking" @open-modal="handleOpenParkingModal" />
+  </div>
+  <Modal ref="modal" title="Horaires">
+    <div v-if="currentHours">
+      <p>Lundi: {{ currentHours.monday.opening }} / {{ currentHours.monday.closure }}</p>
+      <p>Mardi: {{ currentHours.tuesday.opening }} / {{ currentHours.tuesday.closure }}</p>
+      <p>Mercredi: {{ currentHours.wednesday.opening }} / {{ currentHours.wednesday.closure }}</p>
+      <p>Jeudi: {{ currentHours.thursday.opening }} / {{ currentHours.thursday.closure }}</p>
+      <p>Vendredi: {{ currentHours.friday.opening }} / {{ currentHours.friday.closure }}</p>
+      <p>Samedi: {{ currentHours.saturday.opening }} / {{ currentHours.saturday.closure }}</p>
+      <p>Dimanche: {{ currentHours.sunday.opening }} / {{ currentHours.sunday.closure }}</p>
+    </div>
+  </Modal>
 </template>
 
 <script setup lang="ts">
 
 import {ref, Ref} from "vue";
-import {Parking} from "../models/Parking.ts";
+import {Parking as ParkingModel} from "../models/Parking.ts";
 import {useParkingService} from "../composables/parking.service.ts";
+import Parking from "./Parking.vue"
+import {OpeningCalendar} from "../models/OpeningCalendar.ts";
+import Modal from "./partials/modal.vue";
 
-const parkingList: Ref<Array<Parking>> = ref([]);
+const parkingList: Ref<Array<ParkingModel>> = ref([]);
 
-useParkingService().get().then((data: Parking[]) => {
+const modal = ref();
+
+const currentHours: Ref<OpeningCalendar | undefined> = ref<OpeningCalendar>();
+
+useParkingService().get().then((data: ParkingModel[]) => {
   parkingList.value = data;
 });
+
+function handleOpenParkingModal(calendar: OpeningCalendar) {
+  currentHours.value = calendar;
+  modal.value.open();
+}
 
 </script>
 
