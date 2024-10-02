@@ -1,15 +1,21 @@
 import axios from "axios";
-import { isLocal } from "../islocal";
 
-const API_LOCAL_URL = 'https://data.explore.star.fr/api/explore/v2.1/'
-const API_PROD_URL = "http://prod"
 
-const URL: string = isLocal() ? API_LOCAL_URL :  API_PROD_URL;
+const URL: string = "http://nathansakkriou.com:3001/api";
 
-const get = async (resourcePath: string) => {
-	return await axios.get(`${URL}/${resourcePath}`);
+const get = async (resourcePath: string, params : {}) => {
+	let url = `${URL}/${resourcePath}`
+	if(Object.keys(params).length > 0) {
+		url += "?"
+	}
+
+	for (const key of Object.keys(params)) {
+		url = url + key + "=" + encodeURI(params[key as keyof Object] + "") + "&"
+	}
+	
+	return await axios.get(url);
 }
 
 export const httpService = {
-	get: (resourcePath: string) => get(resourcePath),
+	get: (resourcePath: string, params: {}) => get(resourcePath, params),
 }

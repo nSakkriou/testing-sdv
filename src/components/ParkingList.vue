@@ -20,10 +20,11 @@
 import {ref, Ref} from "vue";
 import {Parking as ParkingModel} from "../models/Parking.ts";
 import {useParkingService} from "../composables/parking.service.ts";
-import Parking from "./Parking.vue"
 import {OpeningCalendar} from "../models/OpeningCalendar.ts";
 import Modal from "./partials/modal.vue";
 import { useGeoService } from "../composables/geoloc.service.ts";
+import { AxiosResponse } from "axios";
+import Parking from "./Parking.vue";
 
 const parkingList: Ref<Array<ParkingModel>> = ref([]);
 
@@ -34,8 +35,9 @@ const currentHours: Ref<OpeningCalendar | undefined> = ref<OpeningCalendar>();
 useGeoService().getCoord().then(res => {
     let coord = res
 
-    useParkingService().get(coord).then((data: ParkingModel[]) => {
-      parkingList.value = data;
+    useParkingService().get(coord).then((data: AxiosResponse) => {
+      let response = data.data as ParkingModel[]
+      parkingList.value = response;
     })
 });
 
