@@ -8,4 +8,5 @@ export interface Parking {
 	busStations: Station[]
 	metroStations: Station[]
 	openingCalendar: OpeningCalendar
+	status : string
 }

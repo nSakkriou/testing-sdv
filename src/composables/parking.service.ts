@@ -1,5 +1,3 @@
-import { resolve } from "path";
-import {Parking} from "../models/Parking.ts";
 import { Coord } from "./geoloc.service.ts";
 import { httpService } from "./http.service.ts";
 import { AxiosResponse } from "axios";

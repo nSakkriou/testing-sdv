@@ -4,13 +4,13 @@
   </div>
   <Modal ref="modal" title="Horaires">
     <div v-if="currentHours">
-      <p>Lundi: {{ currentHours.monday.opening }} / {{ currentHours.monday.closure }}</p>
-      <p>Mardi: {{ currentHours.tuesday.opening }} / {{ currentHours.tuesday.closure }}</p>
-      <p>Mercredi: {{ currentHours.wednesday.opening }} / {{ currentHours.wednesday.closure }}</p>
-      <p>Jeudi: {{ currentHours.thursday.opening }} / {{ currentHours.thursday.closure }}</p>
-      <p>Vendredi: {{ currentHours.friday.opening }} / {{ currentHours.friday.closure }}</p>
-      <p>Samedi: {{ currentHours.saturday.opening }} / {{ currentHours.saturday.closure }}</p>
-      <p>Dimanche: {{ currentHours.sunday.opening }} / {{ currentHours.sunday.closure }}</p>
+      <p>Lundi: {{ currentHours.monday?.opening }} / {{ currentHours.monday?.closure }}</p>
+      <p>Mardi: {{ currentHours.tuesday?.opening }} / {{ currentHours.tuesday?.closure }}</p>
+      <p>Mercredi: {{ currentHours.wednesday?.opening }} / {{ currentHours.wednesday?.closure }}</p>
+      <p>Jeudi: {{ currentHours.thursday?.opening }} / {{ currentHours.thursday?.closure }}</p>
+      <p>Vendredi: {{ currentHours.friday?.opening }} / {{ currentHours.friday?.closure }}</p>
+      <p>Samedi: {{ currentHours.saturday?.opening }} / {{ currentHours.saturday?.closure }}</p>
+      <p>Dimanche: {{ currentHours.sunday?.opening }} / {{ currentHours.sunday?.closure }}</p>
     </div>
   </Modal>
 </template>

@@ -1,25 +1,28 @@
 <template>
- <div class="parking">
-   <h2>{{ props.parking.name }}</h2>
-   <div class="controls">
-     <button class="btn-primary" @click="handleOpenModal">
-       Voir les horaires
-     </button>
-     <button class="btn-secondary" @click="goToStations">
+  <div class="parking">
+    <h2>{{ props.parking.name }} <span> - {{ props.parking.status }}</span></h2>
+
+    <div class="controls">
+      <button class="btn-primary" @click="handleOpenModal">
+        Voir les horaires
+      </button>
+      <button class="btn-secondary" @click="goToStations">
         Voir les stations
-     </button>
-   </div>
- </div>
+      </button>
+    </div>
+  </div>
 
 </template>
 
 <script setup lang="ts">
-import {Parking} from "../models/Parking.ts";
+import { Parking } from "../models/Parking.ts";
 import { useRouter } from "vue-router";
 
 const props = defineProps<{
   parking: Parking;
 }>();
+
+console.log(props.parking)
 
 const router = useRouter()
 
@@ -30,7 +33,7 @@ function handleOpenModal() {
 }
 
 function goToStations() {
-  router.push({ path: "/stations", query: { parkingId: props.parking.id + "" }})
+  router.push({ path: "/stations", query: { parkingId: props.parking.id + "" } })
 }
 
 </script>
@@ -48,5 +51,4 @@ function goToStations() {
   display: flex;
   gap: 1rem;
 }
-
 </style>

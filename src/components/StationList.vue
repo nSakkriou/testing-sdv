@@ -32,7 +32,7 @@ import { useParkingService } from '../composables/parking.service';
 import { Ref, ref } from 'vue';
 import { Parking } from '../models/Parking';
 import Station from './Station.vue';
-import router, { goToHome } from '../router';
+import { goToHome } from '../router';
 
 
 const route = useRoute()

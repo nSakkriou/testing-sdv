@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isShown" class="modal">
+  <div v-if="isShown" class="modal" style="background-color: white;">
     <div class="m-header">
       <h2>{{ props.title }}</h2>
       <button class="btn-danger" @click="() => { isShown = false }">Fermer</button>
