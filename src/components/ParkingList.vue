@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="parking-list">
     <Parking ref="parkingRefs" v-for="parking of parkingList" :key="parking.id" :parking="parking" @open-modal="handleOpenParkingModal" />
   </div>
   <Modal ref="modal" title="Horaires">
@@ -49,5 +49,8 @@ function handleOpenParkingModal(calendar: OpeningCalendar) {
 </script>
 
 <style scoped>
-
+.parking-list {
+  display: grid;
+  gap: 1rem;
+}
 </style>
