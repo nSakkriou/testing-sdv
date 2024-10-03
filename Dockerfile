@@ -10,4 +10,4 @@ FROM nginx:alpine
 COPY --from=build-env /app/dist /usr/share/nginx/html
 
 
-EXPOSE 80DO
+EXPOSE 80
