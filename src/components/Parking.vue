@@ -1,6 +1,12 @@
 <template>
   <div class="parking" :id="props.parking.id">
-    <h2><span class="status">{{ props.parking.status.toLowerCase() }}</span> {{ props.parking.name }}</h2>
+    <h2><span :class="{
+      status : true,
+      bgdanger : props.parking.status !== 'OUVERT',
+      bgdsecondary : props.parking.status === 'OUVERT'
+    }"
+      
+    >{{ props.parking.status.toLowerCase() }}</span> {{ props.parking.name }}</h2>
 
     <div class="controls">
       <button class="btn-primary" @click="handleOpenModal">
@@ -55,7 +61,6 @@ function goToStations() {
 
 .status {
   font-size: 1.2rem;
-  background: #b8ff4f;
   padding: 4px 8px;
   border: 2px solid black;
   margin-right: 1rem;

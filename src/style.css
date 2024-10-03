@@ -32,13 +32,22 @@ button.btn-primary {
   background: #75ccff;
 }
 
-button.btn-danger {
+.btn-danger {
   background: #ff6060;
 }
 
-button.btn-secondary {
+.bgdanger {
+  background: #ff6060;
+}
+
+.btn-secondary {
   background: #dbff7f;
 }
+
+.bgdsecondary {
+  background: #dbff7f;
+}
+
 
 .drawer {
   border: 2px solid black;
