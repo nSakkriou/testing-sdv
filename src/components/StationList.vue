@@ -42,6 +42,8 @@ const parking : Ref<Parking | undefined> = ref<Parking>()
 useParkingService().getById(parkingId + "").then(res => {
     let response = res.data as Parking[]
     parking.value = response[0]
+
+    console.log(parking.value)
 })
 
 const showMetro : Ref<Boolean> = ref<boolean>(true)

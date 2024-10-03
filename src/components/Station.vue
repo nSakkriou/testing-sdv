@@ -1,7 +1,6 @@
 <template>
     <div>
-        {{ props.station.name }}
-        {{ props.station.nextPassage }}
+        {{ props.station.nom }}
     </div>    
 </template>
 
