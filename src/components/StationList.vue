@@ -15,11 +15,13 @@
       </div>
 
       <div id="metro" v-if="showMetro">
-        <Station v-for="station in parking?.metroStations" :station="station"></Station>
+        <p v-if="parking?.metroStations.length === 0">Pas de métro a proximité</p>
+        <Station v-else v-for="station in parking?.metroStations" :station="station"></Station>
       </div>
 
       <div id="bus" v-if="!showMetro">
-        <Station v-for="station in parking?.busStations" :station="station"></Station>
+        <p v-if="parking?.busStations.length === 0">Pas de bus a proximité</p>
+        <Station v-else v-for="station in parking?.busStations" :station="station"></Station>
       </div>
     </div>
     
