@@ -1,5 +1,5 @@
 <template>
-  <div class="parking">
+  <div class="parking" :id="props.parking.id">
     <h2><span class="status">{{ props.parking.status.toLowerCase() }}</span> {{ props.parking.name }}</h2>
 
     <div class="controls">
