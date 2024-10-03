@@ -1,6 +1,6 @@
 <template>
   <div class="parking">
-    <h2>{{ props.parking.name }} <span> - {{ props.parking.status }}</span></h2>
+    <h2><span class="status">{{ props.parking.status.toLowerCase() }}</span> {{ props.parking.name }}</h2>
 
     <div class="controls">
       <button class="btn-primary" @click="handleOpenModal">
@@ -45,10 +45,19 @@ function goToStations() {
   justify-content: space-between;
   display: flex;
   padding: 1rem;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 .controls {
   display: flex;
   gap: 1rem;
+}
+
+.status {
+  font-size: 1.2rem;
+  background: #b8ff4f;
+  padding: 4px 8px;
+  border: 2px solid black;
+  margin-right: 1rem;
 }
 </style>

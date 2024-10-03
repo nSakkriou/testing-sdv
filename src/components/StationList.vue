@@ -50,6 +50,8 @@ useParkingService().getById(parkingId + "").then(res => {
 
 const showMetro : Ref<Boolean> = ref<boolean>(true)
 
+
+
 </script>
 <style scoped>
 nav {
@@ -58,5 +60,11 @@ nav {
   justify-content: space-between;
 }
 
+#bus, #metro {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
 
 </style>
