@@ -39,6 +39,11 @@ export const useParkingService = () => {
 
 	return {
 		get: async (coord : Coord): Promise<AxiosResponse> => {
+			if(coord.lat || coord.lon) {
+				coord.lat = 48.11199 + ""
+				coord.lon = -1.672344 + ""	
+			}
+			
 			return await httpService.get("nearby/parc/", coord)
 		},
 
