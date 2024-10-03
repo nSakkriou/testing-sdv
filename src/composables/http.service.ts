@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const URL: string = "http://nathansakkriou.com:3001/api";
+const URL: string = "https://rats-api.nathansakkriou.com/api";
 
 const get = async (resourcePath: string, params : {}) => {
 	let url = `${URL}/${resourcePath}`
