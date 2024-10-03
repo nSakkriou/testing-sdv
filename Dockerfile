@@ -1,5 +1,5 @@
 # Application (Serveur Node)
-FROM node:20.9.0-alpine as build-env
+FROM node:20.9.0-alpine AS build-env
 WORKDIR /app
 COPY . .
 RUN npm install
@@ -10,4 +10,4 @@ FROM nginx:alpine
 COPY --from=build-env /app/dist /usr/share/nginx/html
 
 
-EXPOSE 80
+EXPOSE 80DO
