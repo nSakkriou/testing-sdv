@@ -39,7 +39,7 @@ export const useParkingService = () => {
 
 	return {
 		get: async (coord : Coord): Promise<AxiosResponse> => {
-			return await httpService.get("relais", {})
+			return await httpService.get("relais", coord)
 		},
 
 		getById: async (id: string) :Promise<AxiosResponse> => {
