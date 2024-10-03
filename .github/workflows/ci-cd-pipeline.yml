@@ -54,3 +54,11 @@ jobs:
           push: true
           tags: nsakkriou/sdv-testing-front:latest
           platforms: linux/amd64,linux/arm64
+
+      - name: Notify a new version is ready
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'http://nathansakkriou.com/version/update'
+          method: 'POST'
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"newVersion": "${{ github.event.head_commit.message }}"}'
