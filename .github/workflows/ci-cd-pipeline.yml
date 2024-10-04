@@ -85,6 +85,14 @@ jobs:
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"newVersion": "TEST OK ! NEW Version pour le front"}'
+      
+      - name: Start CD
+        if: success()
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://agent.nathansakkriou.com/update-restart-frontsdv'
+          method: 'GET'
+          customHeaders: '{"Content-Type": "application/json"}'
 
       - name: Cleanup Docker resources
         if: always()

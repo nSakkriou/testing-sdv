@@ -16,6 +16,8 @@
         Voir les stations
       </button>
     </div>
+
+    <p>Test</p>
   </div>
 
 </template>
