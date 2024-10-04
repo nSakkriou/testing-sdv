@@ -29,7 +29,7 @@ jobs:
       - name: Build project
         run: npm run build --prod
 
-  release:
+  test_and_release:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: build
@@ -37,6 +37,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -47,7 +52,30 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image
+      - name: Build Docker image (without pushing)
+        uses: docker/build-push-action@v4
+        id: docker_build
+        with:
+          context: .
+          push: false
+          tags: nsakkriou/sdv-testing-front:test-image
+          platforms: linux/amd64,linux/arm64
+
+      - name: Run Docker container for testing
+        run: |
+          docker run -d --name front-test-container -p 8080:80 nsakkriou/sdv-testing-front:test-image
+          sleep 10 # Attendre que le container soit prêt
+
+      - name: Run tests on the running container
+        run: ./test.sh
+
+      - name: Stop and remove Docker container
+        run: |
+          docker stop front-test-container
+          docker rm front-test-container
+
+      - name: Push Docker image if tests pass
+        if: success()
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -56,9 +84,15 @@ jobs:
           platforms: linux/amd64,linux/arm64
 
       - name: Notify a new version is ready
+        if: success()
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'http://nathansakkriou.com/version/update'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"newVersion": "TEST OK ! NEW Version pour le front"}'
+
+      - name: Cleanup Docker resources
+        if: always()
+        run: |
+          docker rmi nsakkriou/sdv-testing-front:test-image
