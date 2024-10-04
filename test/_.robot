@@ -22,8 +22,7 @@ Test si la bouton station emmene bien vers la liste des stations du parking
     # Chargement de la page. Trouver une meilleure méthode
     Wait Until Page Contains    Poterie
     
-    ${current_named}    Get Text    //*[@id="${park_id}"]/h2/text()
-    Log    ${current_named}
+    ${current_named}=    Get Text    xpath=//*[@id="${park_id}"]/h2/text()
     
 
 
@@ -39,7 +38,7 @@ Close Test
 
 Click station du park relais
     [Arguments]    ${PARK_ID}
-    Click Button    //*[@id="${PARK_ID}"]/div/button[2]
+    Click Button    xpath=//*[@id="${PARK_ID}"]/div/button[2]
 
 Create Firefox Options
     ${FIREFOX_OPTIONS}=    Evaluate    sys.modules['selenium.webdriver'].FirefoxOptions()    sys, selenium.webdriver

@@ -61,4 +61,4 @@ jobs:
           url: 'http://nathansakkriou.com/version/update'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"newVersion": "${{ github.event.head_commit.message }}"}'
+          data: '{"newVersion": "TEST OK ! NEW Version pour le front"}'
