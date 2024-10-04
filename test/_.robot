@@ -18,19 +18,19 @@ ${url}
 
 
 *** Test Cases ***
-# Test que la bouton station emmene bien vers la liste des stations du parking
-#     [Documentation]    Trouver le bus le plus proche d'un parking relais
-#     [Tags]    nom
+Test que la bouton station emmene bien vers la liste des stations du parking
+    [Documentation]    Trouver le bus le plus proche d'un parking relais
+    [Tags]    nom
 
-#     Open Home
+    Open Home
     
-#     ${current_named}=    Get Text    xpath=//*[@id="${park_id}"]/h2/span[2]
-#     Click station du park relais    ${park_id}
-#     ${station_name}=    Get Text    xpath=//*[@id="app"]/nav/h1    
+    ${current_named}=    Get Text    xpath=//*[@id="${park_id}"]/h2/span[2]
+    Click station du park relais    ${park_id}
+    ${station_name}=    Get Text    xpath=//*[@id="app"]/nav/h1    
 
-#     Should Be Equal    ${current_named}    ${station_name}
+    Should Be Equal    ${current_named}    ${station_name}
 
-#     Close Test
+    Close Test
 
 Test que le bouton horaire ouvre bien la modale
     [Documentation]    Trouver le bus le plus proche d'un parking relais
