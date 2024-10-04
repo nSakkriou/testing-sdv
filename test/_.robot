@@ -15,16 +15,17 @@ ${TIMEOUT}    30s
 ${FIREFOX_OPTIONS}
 
 *** Test Cases ***
-Acceder au bus le plus proche du parking relais
+Test si la bouton station emmene bien vers la liste des stations du parking
     [Documentation]    Trouver le bus le plus proche d'un parking relais
     [Tags]    bus
 
     Open Home
+    # Chargement de la page. Trouver une meilleure méthode
     Wait Until Page Contains    Poterie
+    
+    ${current_named}    Get Text    //*[@id="${park_id}"]/h2/text()
+    Log    ${current_named}
 
-    #Click station du park relais    ${park_id}
-    #Click Button    //*[@id="app"]/div/div[1]/button[2]
-    #Click Button    //*[@id="metro"]/button[1]
 
     Close Test
     
@@ -32,7 +33,6 @@ Acceder au bus le plus proche du parking relais
 Open Home
     ${FIREFOX_OPTIONS}=    Create Firefox Options
     Open Browser    ${Site URL}    ${Browser}    options=${FIREFOX_OPTIONS}
-    
     
 Close Test
     Close Browser
