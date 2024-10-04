@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 Library    Process
 
 *** Variables ***
-${Site URL}    http://localhost:8080
+${Site URL}    https://rats.nathansakkriou.com
 ${Browser}     Firefox
 ${park_id}
 ${LATITUDE}    48.8566    # Paris latitude
@@ -72,7 +72,7 @@ Click station du park relais
     
 Create Firefox Options
     ${FIREFOX_OPTIONS}=    Evaluate    sys.modules['selenium.webdriver'].FirefoxOptions()    sys, selenium.webdriver
-    #Call Method    ${FIREFOX_OPTIONS}    add_argument    -headless
+    # Call Method    ${FIREFOX_OPTIONS}    add_argument    -headless
     Call Method    ${FIREFOX_OPTIONS}    set_preference    geo.enabled    ${TRUE}
     Call Method    ${FIREFOX_OPTIONS}    set_preference    geo.provider.use_corelocation    ${TRUE}
     Call Method    ${FIREFOX_OPTIONS}    set_preference    geo.prompt.testing    ${TRUE}
