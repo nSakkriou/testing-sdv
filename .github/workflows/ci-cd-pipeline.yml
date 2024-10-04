@@ -59,7 +59,9 @@ jobs:
           sleep 10 # Attendre que le container soit prêt
 
       - name: Run tests on the running container
-        run: ./test.sh
+        run: |
+         chmod +x test.sh
+         source test.sh
 
       - name: Stop and remove Docker container
         run: |
