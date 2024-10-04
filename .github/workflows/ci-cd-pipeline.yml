@@ -56,7 +56,7 @@ jobs:
       - name: Run tests on the running container
         run: |
           chmod +x test.sh
-          sudo source test.sh
+          source test.sh
 
       - name: Stop and remove Docker container
         run: |
