@@ -6,5 +6,6 @@ while ! curl -s http://localhost:8080; do
   sleep 1
 done
 
+
 mkdir ./test/output/
 robot --variable park_id:PRE -d test/output test/_.robot
