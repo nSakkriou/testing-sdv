@@ -6,7 +6,7 @@
       bgdsecondary : props.parking.status === 'OUVERT'
     }"
       
-    >{{ props.parking.status.toLowerCase() }}</span> {{ props.parking.name }}</h2>
+    >{{ props.parking.status.toLowerCase() }}</span> <span>{{ props.parking.name }}</span></h2>
 
     <div class="controls">
       <button class="btn-primary" @click="handleOpenModal">

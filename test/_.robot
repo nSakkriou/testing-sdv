@@ -1,6 +1,5 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    geoloca.py
 Library    Process
 
 *** Variables ***
@@ -25,6 +24,7 @@ Test si la bouton station emmene bien vers la liste des stations du parking
     
     ${current_named}    Get Text    //*[@id="${park_id}"]/h2/text()
     Log    ${current_named}
+    
 
 
     Close Test
@@ -48,4 +48,4 @@ Create Firefox Options
     Call Method    ${FIREFOX_OPTIONS}    set_preference    geo.provider.use_corelocation    ${TRUE}
     Call Method    ${FIREFOX_OPTIONS}    set_preference    geo.prompt.testing    ${TRUE}
     Call Method    ${FIREFOX_OPTIONS}    set_preference    geo.prompt.testing.allow    ${TRUE}
-    [Return]    ${FIREFOX_OPTIONS}
+    RETURN   ${FIREFOX_OPTIONS}
