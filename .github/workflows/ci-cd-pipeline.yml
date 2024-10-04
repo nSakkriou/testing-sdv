@@ -38,6 +38,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Docker Buildx with docker-container driver
+        run: |
+          docker buildx create --use --name mybuilder
+          docker buildx inspect mybuilder --bootstrap
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -54,9 +59,7 @@ jobs:
           sleep 10 # Attendre que le container soit prêt
 
       - name: Run tests on the running container
-        run: |
-          chmod +x test.sh
-          source test.sh
+        run: ./test.sh
 
       - name: Stop and remove Docker container
         run: |
@@ -84,4 +87,5 @@ jobs:
       - name: Cleanup Docker resources
         if: always()
         run: |
+          docker buildx rm mybuilder
           docker rmi nsakkriou/sdv-testing-front:test-image
