@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 Library    Process
 
 *** Variables ***
-${Site URL}    https://rats.nathansakkriou.com
+${Site URL}    http://localhost:8080
 ${Browser}     Firefox
 ${park_id}
 ${LATITUDE}    48.8566    # Paris latitude
