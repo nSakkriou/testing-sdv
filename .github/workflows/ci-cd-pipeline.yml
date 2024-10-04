@@ -38,11 +38,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11'
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -58,6 +53,7 @@ jobs:
         with:
           context: .
           push: false
+          load: true # Charge l'image dans Docker local après construction
           tags: nsakkriou/sdv-testing-front:test-image
           platforms: linux/amd64,linux/arm64
 
